@@ -1,0 +1,14 @@
+[project]
+name = "familiar"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.13"
+dependencies = [
+    "langchain>=0.3.25",
+    "langgraph>=0.4.5",
+    "pymilvus>=2.5.9",
+    "tavily-python>=0.7.2",
+]
+
+[[tool.uv.index]]
+url = "https://mirrors.aliyun.com/pypi/simple/"
