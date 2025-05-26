@@ -1,4 +1,5 @@
 import sys
+from pathlib import Path
 from typing import Optional
 
 import pandas as pd
@@ -73,10 +74,19 @@ def parse_spell(row: dict) -> Optional[Spell]:
     )
 
 
+def load_spells_from_csv(file_path: Path) -> list[Spell]:
+    """
+    从 CSV 文件加载法术数据并返回 Spell 对象列表。
+    """
+    df = pd.read_csv(file_path, encoding='utf-8')
+    spells = []
+    for _, row in df.iterrows():
+        spell = parse_spell(row)
+        if spell:
+            spells.append(spell)
+    return spells
+
+
 if __name__ == "__main__":
     csv_file = "data/dnd2024spell.csv"  # 替换为实际的 CSV 文件路径
-    df = pd.read_csv(csv_file, encoding='utf-8')
-    rows = df.iterrows()
-    spells = [parse_spell(row) for _, row in rows]
-    for spell in spells:
-        print(spell.model_dump_json())
+    load_spells_from_csv(csv_file)

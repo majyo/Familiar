@@ -5,8 +5,10 @@ description = "Add your description here"
 requires-python = ">=3.13"
 dependencies = [
     "langchain>=0.3.25",
+    "langchain-huggingface>=0.2.0",
     "langchain-openai>=0.3.17",
     "langgraph>=0.4.5",
+    "notebook>=7.4.3",
     "openai>=1.79.0",
     "pymilvus>=2.5.9",
     "tavily-python>=0.7.2",
