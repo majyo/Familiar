@@ -35,6 +35,7 @@ class Spell(BaseModel):
     ritual: bool = Field(False, title="Ritual", description="Indicates if the spell can be cast as a ritual without using a spell slot.")
     concentration: bool = Field(False, title="Concentration", description="Indicates if the spell requires concentration to maintain.")
     classes: list[str] = Field(..., title="Classes", description="The classes that can cast this spell. Note. There are two special classes 'Chronurgy' and 'Graviturgy', which can only be used by Wizards with the appropriate subclass.")
+    source: str = Field(..., title="Source", description="The source of the spell, such as 'Player's Handbook', 'Xanathar's Guide to Everything', etc.")
 
 
 if __name__ == "__main__":
@@ -50,6 +51,7 @@ if __name__ == "__main__":
         description="A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame.",
         ritual=False,
         concentration=False,
-        classes=["Sorcerer", "Wizard"]
+        classes=["Sorcerer", "Wizard"],
+        source="Player's Handbook"
     )
     print(example_spell.model_json_schema())

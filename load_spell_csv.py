@@ -1,4 +1,3 @@
-import sys
 from pathlib import Path
 from typing import Optional
 
@@ -59,6 +58,7 @@ def parse_spell(row: dict) -> Optional[Spell]:
     concentration = bool(row.get('专注', ''))
     # 填充 classes 字段，检查每个预定义职业列是否标记为 "√"
     classes = [cls_en for cls_cn, cls_en in CLASS_MAPPING.items() if row.get(cls_cn, "") == "√"]
+    source = row.get('出处', '未知出处')
     return Spell(
         name=name,
         level=level,
@@ -70,7 +70,8 @@ def parse_spell(row: dict) -> Optional[Spell]:
         description=description,
         ritual=ritual,
         concentration=concentration,
-        classes=classes
+        classes=classes,
+        source=source,
     )
 
 
