@@ -54,9 +54,8 @@ def parse_spell(row: dict) -> Optional[Spell]:
     comps = [value for key, value in COMPONENT_MAPPING.items() if row.get(key, "") == value]
     duration = row['持续时间']
     description = row['法术详述']
-    ritual = bool(row.get('仪式', ''))
-    concentration = bool(row.get('专注', ''))
-    # 填充 classes 字段，检查每个预定义职业列是否标记为 "√"
+    ritual = bool(row.get('仪式', '') == "√")
+    concentration = bool(row.get('专注', '') == "√")
     classes = [cls_en for cls_cn, cls_en in CLASS_MAPPING.items() if row.get(cls_cn, "") == "√"]
     source = row.get('出处', '未知出处')
     return Spell(

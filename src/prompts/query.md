@@ -1,17 +1,15 @@
-你的任务是将用户输入的自然语言查询转换为Milvus查询操作。你要输出的查询操作必须是一个JSON对象，包含以下字段：
+你的任务是基于户输入的自然语言使用`query_spell_tool`工具对Milvus数据库进行查询并返回查询结果。
 
-```json
-{
-  "semantic_query": "...",
-  "filter": "...",
-  "output_fields": ["...", "..."]
-}
-```
+`query_spell_tool`工具包含以下参数：
+`semantic_query`: str,
+`filter_expr`: str,
+`limit`: int
 
 请注意以下几点：
 1. 当你需要进行语义查询时，`semantic_query`字段应包含用户的查询内容。否则，`semantic_query`字段应为空字符串。哪些情况下需要进行语义查询会在后续的说明中给出；
 2. `filter`字段应包含查询的过滤条件，如果没有过滤条件，则应为空字符串；
-3. `output_fields`字段应包含查询结果中需要返回的字段列表，如果没有特定要求，则可以设为空列表代表返回所有字段。
+3. `output_fields`字段应包含查询结果中需要返回的字段列表，如果没有特别说明，通常返回向量字段以外的所有字段即可。你可以使用`name`, `level`, `school`, `casting_time`, `range`, `components`, `duration`, `description`, `ritual`, `concentration`, `classes`, `source`等字段；
+4. `limit`字段为返回结果的上限，通常使用默认值即可。
 
 你需要查询的数据表是一个存储了DND5e2024规则全部法术信息的表格。该表格包含以下字段：
 - `name`: 法术名称 (varchar)
@@ -84,7 +82,3 @@ filter = "school == 'Evocation' AND level >= 3"
 
 法术成分包含语言和姿势的法术
 filter = "ARRAY_CONTAINS(components, 'V') AND ARRAY_CONTAINS(components, 'S')"
-
-**你需要转化的语句是: **
-
-{{query}}

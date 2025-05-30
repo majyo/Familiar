@@ -4,10 +4,13 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.13"
 dependencies = [
+    "dashscope>=1.23.3",
     "langchain>=0.3.25",
+    "langchain-community>=0.3.24",
     "langchain-huggingface>=0.2.0",
     "langchain-openai>=0.3.17",
     "langgraph>=0.4.5",
+    "langgraph-supervisor>=0.0.27",
     "notebook>=7.4.3",
     "openai>=1.79.0",
     "pymilvus>=2.5.9",
@@ -16,3 +19,4 @@ dependencies = [
 
 [[tool.uv.index]]
 url = "https://mirrors.aliyun.com/pypi/simple/"
+default = true
